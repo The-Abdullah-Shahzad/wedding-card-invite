@@ -18,6 +18,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("assets/cormorant-garamond.woff2") format("woff2");
+  font-weight: 500 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --canvas: #f4e9df;
@@ -28,13 +35,13 @@
   --rule: #e6cec1;
   --gold: #e7b494;
   --display: "Instrument Serif", Georgia, serif;
-  --body: system-ui, sans-serif;
-  --header-height: 4.25rem;
+  --body: "Cormorant Garamond", Georgia, serif;
+  --top-inset: max(.75rem, env(safe-area-inset-top));
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-padding-top: max(.75rem, env(safe-area-inset-top)); }
+html { scroll-padding-top: var(--top-inset); }
 
 body {
   margin: 0;
@@ -42,7 +49,7 @@ body {
   min-height: 100svh;
   background: radial-gradient(ellipse at 50% 8%, #fffaf5, transparent 66%), var(--canvas);
   color: var(--ink);
-  font: 1rem/1.55 var(--body);
+  font: 500 1.125rem/1.5 var(--body);
 }
 
 a { color: inherit; }
@@ -54,45 +61,10 @@ a:focus-visible, section:focus-visible {
 .shell {
   max-width: 73rem;
   margin-inline: auto;
+  padding-top: var(--top-inset);
   padding-inline: max(.75rem, env(safe-area-inset-left)) max(.75rem, env(safe-area-inset-right));
   padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
 }
-
-.masthead {
-  min-height: calc(var(--header-height) + env(safe-area-inset-top));
-  padding-top: env(safe-area-inset-top);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: .8rem;
-}
-
-.wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-  min-height: 2.75rem;
-  padding: .15rem .25rem;
-  color: var(--wine);
-  text-decoration: none;
-}
-
-.wordmark-seal {
-  display: grid;
-  grid-auto-flow: column;
-  place-content: center;
-  align-items: baseline;
-  gap: .05em;
-  width: 2.65rem;
-  height: 2.65rem;
-  border: 1px solid #bb8a83;
-  border-radius: 50%;
-  font: 1.13rem/1 var(--display);
-}
-
-.wordmark-seal i { font-size: .75em; }
-.wordmark-name { font: 1.5rem/1 var(--display); }
 
 .story {
   display: grid;
@@ -110,8 +82,8 @@ a:focus-visible, section:focus-visible {
 .cover-card {
   display: grid;
   grid-template-rows: auto 1fr;
-  min-height: calc(100vh - var(--header-height) - .75rem);
-  min-height: calc(100svh - var(--header-height) - max(.75rem, env(safe-area-inset-bottom)) - env(safe-area-inset-top));
+  min-height: calc(100vh - var(--top-inset) - .75rem);
+  min-height: calc(100svh - var(--top-inset) - max(.75rem, env(safe-area-inset-bottom)));
 }
 
 .artwork {
@@ -238,7 +210,7 @@ a:focus-visible, section:focus-visible {
 .eyebrow {
   margin: 0;
   color: var(--wine);
-  font: 650 .875rem/1.45 var(--body);
+  font: 700 .9375rem/1.4 var(--body);
   letter-spacing: .135em;
   text-transform: uppercase;
 }
@@ -306,7 +278,7 @@ h1, h2 {
 
 .cover-date, .event-date {
   display: block;
-  font-size: 1rem;
+  font: 600 1.2rem/1.35 var(--body);
 }
 
 .cover-date { margin: .95rem 0 .85rem; color: var(--muted); }
@@ -319,7 +291,7 @@ h1, h2 {
   min-height: 2.75rem;
   padding: .25rem .5rem;
   color: var(--wine);
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -348,13 +320,14 @@ cite {
   display: block;
   margin-top: .4rem;
   color: #f6d5bc;
-  font: .875rem/1.5 var(--body);
+  font: 600 1rem/1.4 var(--body);
 }
 
 .request {
   max-width: 26rem;
-  margin: 0 auto 1.1rem;
+  margin: 0 auto clamp(1.2rem, 3svh, 1.7rem);
   color: var(--muted);
+  font: 500 clamp(1.2rem, 4.7vw, 1.4rem)/1.38 var(--body);
 }
 
 #invitation-title {
@@ -390,11 +363,12 @@ cite {
 .hosts ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(8.25rem, 100%), 1fr));
-  gap: .35rem .8rem;
+  gap: .5rem .8rem;
   max-width: 23rem;
   margin: .65rem auto 0;
   padding: 0;
   color: var(--muted);
+  font: 600 1.125rem/1.3 var(--body);
   list-style: none;
 }
 
@@ -437,6 +411,7 @@ cite {
   width: min(100%, 17rem);
   margin: .45rem auto 0;
   color: var(--muted);
+  font: 600 1.125rem/1.3 var(--body);
 }
 
 .schedule div {
@@ -454,7 +429,7 @@ cite {
 .schedule dd {
   margin: 0;
   color: var(--wine-dark);
-  font-weight: 650;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-align: end;
   white-space: nowrap;
@@ -463,12 +438,12 @@ cite {
 address {
   margin: .65rem 0 .35rem;
   color: var(--muted);
-  font-style: normal;
+  font: 600 1.125rem/1.4 var(--body);
 }
 
 address strong {
   color: var(--wine-dark);
-  font: 1.5rem/1.2 var(--display);
+  font: 700 1.4rem/1.2 var(--body);
 }
 
 .detail-link {
@@ -491,8 +466,8 @@ address strong {
   border-radius: .6rem;
   background: var(--wine);
   color: #fff9f4;
-  font-size: .9375rem;
-  font-weight: 650;
+  font-size: 1.1rem;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -507,6 +482,8 @@ address strong {
 }
 
 .contacts a {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -514,7 +491,16 @@ address strong {
   max-width: 30rem;
   margin: .9rem auto 0;
   color: var(--wine-dark);
-  font: italic 1.4rem/1.22 var(--display);
+  font: italic 1.4rem/1.32 var(--display);
+}
+
+@media (width < 50rem) {
+  .chapter-content {
+    align-content: space-evenly;
+    row-gap: clamp(1.25rem, 3.2svh, 2rem);
+  }
+  .hosts, .contact, .closing { margin-top: 0; }
+  .event-details { gap: clamp(1.5rem, 3.5svh, 2rem); }
 }
 
 @media (hover: hover) {
@@ -524,7 +510,6 @@ address strong {
 }
 
 @media (max-width: 35.99rem) and (max-height: 43rem) {
-  :root { --header-height: 3.55rem; }
   .artwork { min-height: clamp(10.25rem, 39svh, 15rem); }
   .arch { width: clamp(7rem, 37vw, 10rem); }
   .cover { padding-block: 1.25rem 1.45rem; }
@@ -537,13 +522,11 @@ address strong {
 }
 
 @media (min-width: 50rem) {
-  :root { --header-height: 5.5rem; }
   .shell { padding-bottom: max(3rem, env(safe-area-inset-bottom)); }
-  .masthead { justify-content: start; }
   .cover-card {
     grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
     grid-template-rows: 1fr;
-    min-height: min(46rem, calc(100svh - var(--header-height) - 1.5rem));
+    min-height: min(46rem, calc(100svh - var(--top-inset) - 1.5rem));
   }
   .artwork { min-height: 34rem; }
   .artwork::before, .artwork::after { width: 84%; }
