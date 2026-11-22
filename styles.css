@@ -215,6 +215,8 @@ a:focus-visible, section:focus-visible {
   text-transform: uppercase;
 }
 
+h3.eyebrow { -webkit-text-stroke: .2px currentColor; }
+
 h1, h2 {
   margin: 0;
   color: var(--wine-dark);
@@ -362,13 +364,14 @@ cite {
 
 .hosts ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(8.25rem, 100%), 1fr));
-  gap: .5rem .8rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: .5rem;
   max-width: 23rem;
   margin: .65rem auto 0;
   padding: 0;
   color: var(--muted);
   font: 600 1.125rem/1.3 var(--body);
+  text-align: center;
   list-style: none;
 }
 
